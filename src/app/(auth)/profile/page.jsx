@@ -1,6 +1,7 @@
 "use client";
 
-import { FloppyDisk } from "@gravity-ui/icons";
+import { updateUser } from "@/lib/auth-client";
+import { FloppyDisk, Persons } from "@gravity-ui/icons";
 import {
   Button,
   Description,
@@ -12,14 +13,19 @@ import {
   Label,
   TextArea,
   TextField,
+  toast,
 } from "@heroui/react";
 
 export default function ProfilePage() {
-  const handleUpdateUser = (e) => {
+  const handleUpdateUser = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
     console.log("user data", userData);
+    const resData = await updateUser({
+      name: userData.name,
+    });
+    console.log("after submit user data ", resData);
   };
 
   return (
@@ -48,7 +54,22 @@ export default function ProfilePage() {
           </TextField>
         </FieldGroup>
         <Fieldset.Actions>
-          <Button type="submit">
+          <Button
+            type="submit"
+            variant="secondary"
+            onPress={() => {
+              const id = toast("You have been invited to join a team", {
+                actionProps: {
+                  children: "Dismiss",
+                  onPress: () => toast.close(id),
+                  variant: "tertiary",
+                },
+                description: "Bob sent you an invitation to join HeroUI team",
+                indicator: <Persons />,
+                variant: "default",
+              });
+            }}
+          >
             <FloppyDisk />
             Save changes
           </Button>

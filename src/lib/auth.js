@@ -11,6 +11,7 @@ const db = client.db("better-auth-db2");
 export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
+    requireEmailVerification:true
   },
 socialProviders:{
 google:{
