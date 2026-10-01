@@ -24,13 +24,24 @@ export default function Navbar() {
         <Link href="/services">Services</Link>
       </li>
       <li>
-        <Link href="/dashboard" className="font-medium text-accent" aria-current="page">
+        <Link
+          href="/dashboard"
+          className="font-medium text-accent"
+          aria-current="page"
+        >
           Dashboard
         </Link>
       </li>
-      { session?.user && <li>
-        <Link href="/profile">Profile</Link>
-      </li>}
+      {session?.user && (
+        <>
+          <li>
+            <Link href="/profile">Profile</Link>
+          </li>
+          <li>
+            <Link href="/settings">Settings</Link>
+          </li>
+        </>
+      )}
     </>
   );
   const authLinks = (

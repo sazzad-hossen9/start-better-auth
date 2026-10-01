@@ -26,11 +26,11 @@ const SignUpPage = () => {
   };
   const handleGoogleBtn = async () => {
     const dataRes = await signIn.social({
-      provider: "google",
+      provider: "github",
       // callbackURL: "/",
 
     });
-    console.log("after google sign in ", dataRes);
+    console.log("after github sign in ", dataRes);
   };
   return (
     <div>
@@ -73,9 +73,9 @@ const SignUpPage = () => {
             if (value.length < 8) {
               return "Password must be at least 8 characters";
             }
-            if (!/[A-Z]/.test(value)) {
-              return "Password must contain at least one uppercase letter";
-            }
+            // if (!/[A-Z]/.test(value)) {
+            //   return "Password must contain at least one uppercase letter";
+            // }
             if (!/[0-9]/.test(value)) {
               return "Password must contain at least one number";
             }
