@@ -15,13 +15,18 @@ export const auth = betterAuth({
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
       void resend.emails.send({
-       from: 'Acme <onboarding@resend.dev>',
+        from: "Acme <onboarding@resend.dev>",
         to: user.email,
         subject: "Verify your email address",
-        html: `Click <a href="${url}">here</a> to verify your email.`,
+        html: ` <h1>please verify your email</h1>
+        Click <a href="${url}">here</a> to verify your email.`,
       });
     },
+    sendOnSignUp: true,
+    autoSignInAfterVerification: true,
+    expiresIn: 7*24*3600 // 3600 1 hour  | 24*3600 24 hour  |   7*24*3600 7days
   },
+
   socialProviders: {
     google: {
       clientId: process.env.BETTER_AUTH_GOOGLE_CLIENT_ID,

@@ -19,10 +19,10 @@ const SignUpPage = () => {
       name: data.name,
       email: data.email,
       password: data.password,
-      callbackURL: "/",
+
     });
     // console.log("data from tha form", data);
-    console.log(resData, error);
+    console.log("after sign up " ,resData, error);
   };
   const handleGoogleBtn = async () => {
     const dataRes = await signIn.social({
